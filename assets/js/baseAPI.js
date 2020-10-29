@@ -13,4 +13,17 @@ $.ajaxPrefilter(function (options) {
       Authorization: localStorage.getItem("token") || "",
     };
   }
+
+  // 全局统一挂载 complete 回调函数
+  options.complete = function (res) {
+    if (
+      res.responseJSON.status === 1 &&
+      res.responseJSON.message === "身份认证失败！"
+    ) {
+      // 1. 强制清除token
+      localStorage.removeItem("token");
+      // 2. 强制跳转页面
+      location.href = "/login.html";
+    }
+  };
 });
