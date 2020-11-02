@@ -156,4 +156,15 @@ $(function () {
             layer.close(index);
         });
     });
+
+    // // 点击编辑按钮,修改文章
+    $("tbody").on("click", ".btnEdit", function () {
+        const id = $(this).attr("data-id");
+        localStorage.setItem("id", id);
+        location.href = "/article/edit/edit.html";
+    });
+    // // 6. 监听编辑按钮的点击事件
+    // $("body").on("click", ".btnEdit", function () {
+    //     location.href = "/article/edit/edit.html?id=" + $(this).attr("data-id");
+    // });
 });
